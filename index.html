@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service de Guide pour Hajj</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes bounce {
+      0%, 100% { transform: translateY(-25%); }
+      50% { transform: translateY(0); }
+    }
+    
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+    
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600 mr-2">
+            <path d="M12 3a6 6 0 0 0-6 6c0 7 6 11 6 11s6-4 6-11a6 6 0 0 0-6-6Z"/>
+            <path d="M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+          </svg>
+          <h1 class="font-bold text-2xl text-white">Hajj</h1>
+        </div>
+        
+        <nav class="hidden md:flex space-x-8">
+          <a href="#home" class="text-white font-medium hover:text-emerald-500 transition-colors">Accueil</a>
+          <a href="#services" class="text-white font-medium hover:text-emerald-500 transition-colors">Services</a>
+          <a href="#packages" class="text-white font-medium hover:text-emerald-500 transition-colors">Forfaits</a>
+          <a href="#book-now" class="text-white font-medium hover:text-emerald-500 transition-colors">Réserver</a>
+        </nav>
+
+        <button class="md:hidden text-white" id="menuButton">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="md:hidden hidden bg-white" id="mobileMenu">
+        <div class="container mx-auto px-4 py-4">
+          <nav class="flex flex-col space-y-4">
+            <a href="#home" class="text-gray-800 font-medium py-2 hover:text-emerald-500">Accueil</a>
+            <a href="#services" class="text-gray-800 font-medium py-2 hover:text-emerald-500">Services</a>
+            <a href="#packages" class="text-gray-800 font-medium py-2 hover:text-emerald-500">Forfaits</a>
+            <a href="#book-now" class="text-gray-800 font-medium py-2 hover:text-emerald-500">Réserver</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden"
+      style="background-image: url('https://images.pexels.com/photos/12704642/pexels-photo-12704642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750'); background-size: cover; background-position: center;">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      
+      <div class="relative z-10 text-center px-4 max-w-4xl" id="heroContent">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+          Votre voyage vers les lieux sacrés
+        </h1>
+        <p class="text-xl md:text-2xl text-white mb-8">
+          Vivez le Hajj avec des guides experts, des hébergements premium et des voyages spirituels inoubliables
+        </p>
+        <a href="#book-now" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+          Réservez votre voyage
+        </a>
+      </div>
+      
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2" style="animation: bounce 2s infinite;">
+        <div class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center">
+          <div class="w-1 h-4 bg-white rounded-full"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nos Services Premium</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Nous proposons des forfaits complets conçus pour rendre votre voyage Hajj spirituel, confortable et mémorable
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="servicesGrid">
+          <!-- Services will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nos Forfaits Hajj</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Choisissez le forfait parfait qui répond à vos besoins pour un voyage spirituel significatif
+          </p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center mb-12" id="packageTabs">
+          <!-- Package type tabs will be dynamically inserted here -->
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="packagesGrid">
+          <!-- Package cards will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book-now" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Réservez Votre Voyage</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Remplissez le formulaire ci-dessous pour commencer votre voyage spirituel
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <!-- Progress Steps -->
+          <div class="flex items-center justify-between mb-12 max-w-3xl mx-auto" id="bookingSteps">
+            <!-- Steps will be dynamically inserted here -->
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <form id="bookingForm" class="space-y-6">
+              <!-- Form content will be dynamically inserted here -->
+            </form>
+            <div class="order-success hidden bg-green-100 text-green-800 p-4 rounded-lg mt-4 text-center" id="order-success">
+              Votre réservation a été envoyée avec succès !
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Header Scroll Effect
+    const header = document.getElementById('header');
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('bg-white', 'shadow-md', 'py-2');
+        header.classList.remove('py-4');
+      } else {
+        header.classList.remove('bg-white', 'shadow-md', 'py-2');
+        header.classList.add('py-4');
+      }
+    });
+
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Hero Parallax Effect
+    const heroContent = document.getElementById('heroContent');
+    
+    window.addEventListener('scroll', () => {
+      const scrollValue = window.scrollY;
+      heroContent.style.transform = `translateY(${scrollValue * 0.2}px)`;
+    });
+
+    // Services Data
+    const services = [
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>',
+        title: "Arrangements de vols",
+        description: "Vols aller-retour vers et depuis l'Arabie Saoudite avec des compagnies aériennes premium, garantissant un voyage confortable pour commencer votre expérience spirituelle."
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h18"></path><path d="M3 20h18"></path><path d="M3 8h18"></path><path d="M17 4h4"></path><path d="M3 4h10"></path></svg>',
+        title: "Hébergement",
+        description: "Choisissez entre des options d'hôtels premium ou standard, tous stratégiquement situés près des sites sacrés pour votre commodité."
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>',
+        title: "Visites guidées",
+        description: "Visites religieuses et culturelles dirigées par des experts pour enrichir votre voyage spirituel avec une connaissance approfondie des sites sacrés."
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+        title: "Support personnalisé",
+        description: "Assistance 24/7 de nos guides expérimentés qui parlent plusieurs langues pour vous aider tout au long de votre voyage."
+      }
+    ];
+
+    // Render Services
+    const servicesGrid = document.getElementById('servicesGrid');
+    services.forEach(service => {
+      const serviceCard = document.createElement('div');
+      serviceCard.className = 'relative w-full h-64 perspective-1000 cursor-pointer group';
+      serviceCard.innerHTML = `
+        <div class="absolute w-full h-full transition-transform duration-700 preserve-3d">
+          <div class="absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+            <div class="text-emerald-600 mb-4">${service.icon}</div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">${service.title}</h3>
+          </div>
+          <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-emerald-600 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center text-white">
+            <p class="text-center">${service.description}</p>
+          </div>
+        </div>
+      `;
+      
+      serviceCard.addEventListener('mouseenter', () => {
+        serviceCard.querySelector('.preserve-3d').classList.add('rotate-y-180');
+      });
+      
+      serviceCard.addEventListener('mouseleave', () => {
+        serviceCard.querySelector('.preserve-3d').classList.remove('rotate-y-180');
+      });
+      
+      servicesGrid.appendChild(serviceCard);
+    });
+
+    // Packages Data
+    const packages = [
+      {
+        id: 'ind-standard',
+        title: 'Standard Individuel',
+        type: 'individuel',
+        price: 2500,
+        features: [
+          'Vols aller-retour en classe économique',
+          'Hébergement en hôtel standard',
+          '3 visites de sites religieux',
+          '1 excursion culturelle',
+          'Transport partagé',
+          'Conseils de base pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/8489925/pexels-photo-8489925.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'standard'
+      },
+      {
+        id: 'ind-premium',
+        title: 'Premium Individuel',
+        type: 'individuel',
+        price: 4000,
+        features: [
+          'Vols aller-retour en classe affaires',
+          'Hébergement en hôtel 5 étoiles',
+          '5 visites de sites religieux',
+          '2 excursions culturelles',
+          'Transport privé',
+          'Conseils avancés pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/12700972/pexels-photo-12700972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'premium'
+      },
+      {
+        id: 'couple-standard',
+        title: 'Standard Couple',
+        type: 'couple',
+        price: 4500,
+        features: [
+          'Vols aller-retour en classe économique pour 2',
+          'Hébergement en hôtel standard (chambre double)',
+          '3 visites de sites religieux',
+          '1 excursion culturelle',
+          'Transport partagé',
+          'Conseils de base pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/12704642/pexels-photo-12704642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'standard'
+      },
+      {
+        id: 'couple-premium',
+        title: 'Premium Couple',
+        type: 'couple',
+        price: 7000,
+        features: [
+          'Vols aller-retour en classe affaires pour 2',
+          'Hébergement en hôtel 5 étoiles (suite)',
+          '5 visites de sites religieux',
+          '2 excursions culturelles',
+          'Transport privé',
+          'Conseils avancés pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/4344252/pexels-photo-4344252.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'premium'
+      },
+      {
+        id: 'family-standard',
+        title: 'Standard Famille',
+        type: 'famille',
+        price: 8000,
+        features: [
+          'Vols aller-retour en classe économique pour 4',
+          'Hébergement en hôtel standard (suite familiale)',
+          '3 visites de sites religieux',
+          '1 excursion culturelle',
+          'Transport partagé',
+          'Conseils de base pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/12704642/pexels-photo-12704642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'standard'
+      },
+      {
+        id: 'family-premium',
+        title: 'Premium Famille',
+        type: 'famille',
+        price: 12000,
+        features: [
+          'Vols aller-retour en classe affaires pour 4',
+          'Hébergement en hôtel 5 étoiles (suite familiale)',
+          '5 visites de sites religieux',
+          '2 excursions culturelles',
+          'Transport privé',
+          'Conseils avancés pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/12700972/pexels-photo-12700972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'premium'
+      },
+      {
+        id: 'group-standard',
+        title: 'Standard Groupe',
+        type: 'groupe',
+        price: 2000,
+        features: [
+          'Vols aller-retour en classe économique',
+          'Hébergement en hôtel standard (par personne)',
+          '3 visites de sites religieux',
+          '1 excursion culturelle',
+          'Transport partagé',
+          'Conseils de base pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/8489925/pexels-photo-8489925.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'standard'
+      },
+      {
+        id: 'group-premium',
+        title: 'Premium Groupe',
+        type: 'groupe',
+        price: 3500,
+        features: [
+          'Vols aller-retour en classe affaires',
+          'Hébergement en hôtel 5 étoiles (par personne)',
+          '5 visites de sites religieux',
+          '2 excursions culturelles',
+          'Transport privé',
+          'Conseils avancés pour Hajj'
+        ],
+        image: 'https://images.pexels.com/photos/12700972/pexels-photo-12700972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+        accommodation: 'premium'
+      }
+    ];
+
+    // Render Package Tabs
+    const packageTypes = ['individuel', 'couple', 'famille', 'groupe'];
+    const packageTabs = document.getElementById('packageTabs');
+    let activeTab = 'individuel';
+
+    packageTypes.forEach(type => {
+      const tab = document.createElement('button');
+      tab.className = `px-6 py-3 m-2 rounded-full font-medium transition-all duration-300 ${
+        type === activeTab ? 'bg-emerald-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+      }`;
+      tab.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+      tab.addEventListener('click', () => {
+        activeTab = type;
+        renderPackages();
+        packageTabs.querySelectorAll('button').forEach(btn => {
+          btn.className = `px-6 py-3 m-2 rounded-full font-medium transition-all duration-300 ${
+            btn.textContent.toLowerCase() === activeTab ? 'bg-emerald-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`;
+        });
+      });
+      packageTabs.appendChild(tab);
+    });
+
+    // Render Packages
+    function renderPackages() {
+      const packagesGrid = document.getElementById('packagesGrid');
+      packagesGrid.innerHTML = '';
+      
+      const filteredPackages = packages.filter(pkg => pkg.type === activeTab);
+      
+      filteredPackages.forEach((pkg, index) => {
+        const packageCard = document.createElement('div');
+        packageCard.className = 'bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl';
+        packageCard.innerHTML = `
+          <div class="relative h-64">
+            <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover">
+            <div class="absolute top-4 right-4 bg-emerald-600 text-white px-4 py-1 rounded-full">
+              ${pkg.accommodation.charAt(0).toUpperCase() + pkg.accommodation.slice(1)}
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">${pkg.title}</h3>
+            <p class="text-3xl font-bold text-emerald-600 mb-6">€${pkg.price} <span class="text-sm font-normal text-gray-600">${pkg.type === 'groupe' ? 'par personne' : pkg.type === 'individuel' ? 'par personne' : 'total'}</span></p>
+            <ul class="space-y-2 mb-6">
+              ${pkg.features.map(feature => `
+                <li class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-emerald-500 h-5 w-5 mr-2 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>${feature}</span>
+                </li>
+              `).join('')}
+            </ul>
+            <a href="#book-now" class="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded transition-colors duration-300">
+              Sélectionner le forfait
+            </a>
+          </div>
+        `;
+        packagesGrid.appendChild(packageCard);
+      });
+    }
+
+    // Initial render of packages
+    renderPackages();
+
+    // Booking Form
+    let currentStep = 1;
+    const totalSteps = 3;
+    const bookingSteps = document.getElementById('bookingSteps');
+    const bookingForm = document.getElementById('bookingForm');
+
+    // Render Steps
+    for (let i = 1; i <= totalSteps; i++) {
+      const step = document.createElement('div');
+      step.className = 'flex flex-col items-center';
+      step.innerHTML = `
+        <div class="w-10 h-10 rounded-full flex items-center justify-center ${
+          i === currentStep ? 'bg-emerald-600 text-white' : 'bg-gray-200 text-gray-500'
+        }">${i}</div>
+        <div class="text-sm mt-2 text-gray-600">
+          ${i === 1 ? 'Détails du forfait' : i === 2 ? 'Demandes spéciales' : 'Informations personnelles'}
+        </div>
+      `;
+      bookingSteps.appendChild(step);
+    }
+
+    // Form Data
+    let formData = {
+      packageId: 'ind-standard',
+      guests: 1,
+      specialRequests: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      travelDate: ''
+    };
+
+    // Render Form Steps
+    function renderFormStep() {
+      bookingForm.innerHTML = '';
+      
+      if (currentStep === 1) {
+        bookingForm.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Sélectionnez votre forfait</h3>
+            
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">Forfait</label>
+              <select
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                onchange="updateFormData('packageId', this.value)"
+              >
+                ${packages.map(pkg => `
+                  <option value="${pkg.id}" ${formData.packageId === pkg.id ? 'selected' : ''}>${pkg.title} - €${pkg.price} ${pkg.type === 'groupe' ? 'par personne' : pkg.type === 'individuel' ? 'par personne' : 'total'}</option>
+                `).join('')}
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">Nombre d'invités</label>
+              <div class="flex border border-gray-300 rounded-lg overflow-hidden">
+                <button type="button"
+                  class="px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+                  onclick="updateGuests(-1)">-</button>
+                <input type="number"
+                  value="${formData.guests}"
+                  class="w-full text-center p-2 border-x border-gray-300 focus:outline-none"
+                  onchange="updateFormData('guests', this.value)"
+                  min="1">
+                <button type="button"
+                  class="px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+                  onclick="updateGuests(1)">+</button>
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">Date de voyage préférée</label>
+              <input type="date"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                value="${formData.travelDate}"
+                onchange="updateFormData('travelDate', this.value)"
+                required>
+            </div>
+          </div>
+        `;
+      } else if (currentStep === 2) {
+        bookingForm.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Demandes spéciales</h3>
+            
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">
+                Avez-vous des demandes ou besoins spéciaux ?
+              </label>
+              <textarea
+                rows="5"
+                placeholder="Veuillez décrire tout besoin spécial, exigences alimentaires ou demandes spécifiques pour votre voyage."
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                onchange="updateFormData('specialRequests', this.value)"
+              >${formData.specialRequests}</textarea>
+            </div>
+            
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-medium text-blue-700 mb-2">Ce qu'il faut inclure dans les demandes spéciales :</h4>
+              <ul class="list-disc pl-5 text-blue-600 space-y-1">
+                <li>Exigences alimentaires (halal, végétarien, allergies)</li>
+                <li>Besoins d'accessibilité</li>
+                <li>Arrangements de chambre préférés</li>
+                <li>Sites religieux spécifiques à visiter</li>
+                <li>Besoins d'assistance linguistique</li>
+              </ul>
+            </div>
+          </div>
+        `;
+      } else if (currentStep === 3) {
+        bookingForm.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Informations personnelles</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">
+                  <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Prénom
+                  </span>
+                </label>
+                <input type="text"
+                  placeholder="Votre prénom"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  value="${formData.firstName}"
+                  onchange="updateFormData('firstName', this.value)"
+                  required>
+              </div>
+              
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">
+                  <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Nom
+                  </span>
+                </label>
+                <input type="text"
+                  placeholder="Votre nom"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  value="${formData.lastName}"
+                  onchange="updateFormData('lastName', this.value)"
+                  required>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">
+                  <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Adresse e-mail
+                  </span>
+                </label>
+                <input type="email"
+                  placeholder="votre.email@exemple.com"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  value="${formData.email}"
+                  onchange="updateFormData('email', this.value)"
+                  required>
+              </div>
+              
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">
+                  <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    Numéro de téléphone
+                  </span>
+                </label>
+                <input type="tel"
+                  placeholder="Votre numéro de téléphone"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  value="${formData.phone}"
+                  onchange="updateFormData('phone', this.value)"
+                  required>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Navigation buttons
+      const buttonsDiv = document.createElement('div');
+      buttonsDiv.className = 'flex justify-between mt-8';
+      
+      if (currentStep > 1) {
+        const prevButton = document.createElement('button');
+        prevButton.type = 'button';
+        prevButton.className = 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded transition-colors duration-300';
+        prevButton.textContent = 'Précédent';
+        prevButton.onclick = prevStep;
+        buttonsDiv.appendChild(prevButton);
+      }
+      
+      const nextButton = document.createElement('button');
+      nextButton.type = currentStep === totalSteps ? 'submit' : 'button';
+      nextButton.className = 'bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded transition-colors duration-300 ml-auto';
+      nextButton.textContent = currentStep === totalSteps ? 'Soumettre' : 'Suivant';
+      nextButton.onclick = currentStep === totalSteps ? submitForm : nextStep;
+      buttonsDiv.appendChild(nextButton);
+      
+      bookingForm.appendChild(buttonsDiv);
+    }
+
+    // Form Navigation and Submission
+    function updateFormData(field, value) {
+      formData[field] = value;
+      renderFormStep();
+    }
+
+    function updateGuests(change) {
+      const newValue = Math.max(1, formData.guests + change);
+      updateFormData('guests', newValue);
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateStepIndicators();
+        renderFormStep();
+        scrollToForm();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepIndicators();
+        renderFormStep();
+        scrollToForm();
+      }
+    }
+
+    function updateStepIndicators() {
+      const steps = bookingSteps.children;
+      for (let i = 0; i < steps.length; i++) {
+        const stepNumber = steps[i].querySelector('div');
+        stepNumber.className = `w-10 h-10 rounded-full flex items-center justify-center ${
+          i + 1 === currentStep ? 'bg-emerald-600 text-white' : 'bg-gray-200 text-gray-500'
+        }`;
+      }
+    }
+
+    function scrollToForm() {
+      const formSection = document.getElementById('book-now');
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function calculateTotalPrice() {
+      const selectedPackage = packages.find(pkg => pkg.id === formData.packageId);
+      if (!selectedPackage) return 0;
+      
+      if (selectedPackage.type === 'individuel' || selectedPackage.type === 'groupe') {
+        return selectedPackage.price * formData.guests;
+      }
+      return selectedPackage.price;
+    }
+
+    function generateSummary() {
+      const selectedPackage = packages.find(pkg => pkg.id === formData.packageId);
+      const totalPrice = calculateTotalPrice();
+      
+      return `RÉSERVATION HAJJ\n\nClient: ${formData.firstName} ${formData.lastName}\nTéléphone: ${formData.phone}\nEmail: ${formData.email}\n\nDÉTAIL DE LA RÉSERVATION:\nForfait: ${selectedPackage.title}\nPrix unitaire: €${selectedPackage.price} ${selectedPackage.type === 'groupe' ? 'par personne' : selectedPackage.type === 'individuel' ? 'par personne' : 'total'}\nNombre d'invités: ${formData.guests}\nPrix total: €${totalPrice}\nDate de voyage: ${formData.travelDate}\nDemandes spéciales: ${formData.specialRequests || 'Aucune'}`;
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      
+      const summary = generateSummary();
+      const vendorPhone = '0644762721'; // Remplace par le numéro souhaité
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        window.location.href = `sms:${vendorPhone}?body=${encodeURIComponent(summary)}`;
+      } else {
+        const subject = encodeURIComponent(`Réservation Hajj - ${formData.firstName} ${formData.lastName}`);
+        const body = encodeURIComponent(summary);
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=contact@hajjvoyage.com&su=${subject}&body=${body}`, '_blank');
+      }
+      
+      // Afficher le message de succès
+      const orderSuccess = document.getElementById('order-success');
+      orderSuccess.classList.remove('hidden');
+      setTimeout(() => {
+        orderSuccess.classList.add('hidden');
+        resetForm();
+      }, 3000);
+    }
+
+    function resetForm() {
+      formData = {
+        packageId: 'ind-standard',
+        guests: 1,
+        specialRequests: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        travelDate: ''
+      };
+      currentStep = 1;
+      updateStepIndicators();
+      renderFormStep();
+    }
+
+    // Initial form render
+    renderFormStep();
+  </script>
+</body>
+</html>
